@@ -1,8 +1,9 @@
 language: ruby
 rvm:
-  - 2.4.1
-services:
-  postgresql
+- 2.4.1
+services: postgresql
 deploy:
   provider: heroku
   app: rhantak-be4-final
+  api_key:
+    secure: heZK2kPhGKKAc5KYcKbmTrgvZWMI2G02xkvaxABZP8Iq4APqFGxwrd3AYQbMg1D31bRAHQkQM54mHDgrreQdG4ffD51mBYoJ88tj0RfCc5rXmTWOKTSc4z2wiayQ7yMA0AA8oWlqn9QbuEcKDfnYFbrKE8c68fkTzrmvI2p+O23oRTg5Q3xVHkvd/mwTk4QS2eB+YzU6mVZn+KDrBEam/6N+/VjGYkL3yfvBkkHOxhfM42A550dARSu5aRUwGn06kB7DuRVU4qd4bzk+rjMBYsJLMgANY0jN0sUT4tleHk6VGk+6JwG4FBMXmar81181rZX9eOheCYNy89MteXLbw/60eGBzSNgxpaoNZdX/gTPQq8HXIqIRgFHqNYWlulKo5HHlwSppQoLYqZeKBaWn+ia2hubtxa5HPAFjEXwORf0wRpZS1yBtz/8UgXuaV8d6sfK1FK+iqpy8itAo4p4l6woyKgE2IMMCdTglzXLqPhxK3Cuv8LkW4OeB11xwjQmeCnJpOr/E4/bLTnuG6bXQMYmHVmm/wy+x1o2ed4x7frfEMe7EO+2aAJWsfg460OiDMm1n8VhEGOiuImXa4SoIYSPIVLtBcoZfWe1GqPQGTKk1SfRckvMFxFOb7T6w6EZea4L8om+oYQa5IMMzNLym/1oSwJU47CUTfGv/tteK158=
