@@ -28,7 +28,6 @@ namespace :import_data do
       event = Event.find_or_create_by(
         games: row["Games"],
         event: row["Event"],
-        medal: row["Medal"],
         sport_id: sport.id,
         olympian_id: olympian.id
       )
