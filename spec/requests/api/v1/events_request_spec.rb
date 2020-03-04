@@ -69,4 +69,17 @@ describe 'Events API' do
     expect(data["medalists"][0]["age"]).to eq(@olymp_4.age)
     expect(data["medalists"][0]["medal"]).to eq("Gold")
   end
+
+  it "sends an error if a requested event does not exist" do
+    get "/api/v1/events/0/medalists"
+
+    expect(response).to_not be_successful
+    
+    expect(response.status).to eq(404)
+
+    data = JSON.parse(response.body)
+
+    expect(data["error"]).to eq("Unable to find medalists.")
+    expect(data["detail"]).to eq("Could not find an event with id = 0. Please check your event id and try again.")
+  end
 end
