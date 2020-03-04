@@ -1,11 +1,19 @@
+
+before_script:
+  - cp config/database.yml.travis config/database.yml
+  - psql -c 'create database travis_ci_test;' -U postgres
 language: ruby
 rvm:
-- 2.4.1
-services: postgresql
+  - 2.4.1
+script:
+  - bundle exec rails db:reset db:setup db:migrate RAILS_ENV=test
+  - bundle exec rspec
+services:
+  postgresql
 deploy:
   provider: heroku
   api_key:
-    secure: KTXSMSAz266Vcd8PNPuOLpJ7+iJOMNO/KXCakx+AobXVaC4gqIjvceZprlWi/4JAAL2uUd33EhJzmREjWfhiCTx3aGRGd2G2lYIz5RNhmdDnr8+PRzgdAGIOyddxbtN0HxUB5O4uypGt+MaYhTN8+ZGrWbIqj9dL5+ez1291AHtzAwKV67sU8FY3P6fLy9Q7WnwHpLiAebxn+RUYTdQYtY+Bg0RwL/cdo4uJd3bBqSuhwXafavIvK3UsR4SZjhoxl274Bk0KBNwY6auGndJVNDBQaY1g9xWP5OhcMya0me29VIX427U4FYep5qQjInd4lKNOA4aENQZ6oA3+m6QMxAj2YcQML3/tVtxvDZAnoDpF3ZBxBOsLFMOA8H3ForPQ6fev3XNeKNGarErIhSKv8iGNLEWii0IsDTbPPXdZlPytT1gkAsb33P6tW5cCwRn9OIbempCOGn7rqk59p/blegms8cHpxqioqRamwhabX0/NpGrV5eo7K74xIqKdNb59ZscGBF4wlOtkMYKdlknAn0S3MJfBmPA4KRAJzSM4zg6tud4Ez9esMkyM56BDxgOG6+fhV22LX8cJWbleYQk3viK6bP5xB94w91uuKTzrjbbDkD0buHYLybgNDmhWVxUPyNrMveTdr/toQLC1aAgJ1VTxhg+w5NcWlai3+OXyYnE=
+    secure: S9Q3uEm499kwh5lzuLoWsPaolTER7eE20+Q9RH1qvlts7PNxhDWpkPW7OUNqwJV3ECkXjkc+f3+9f0ecXx6lNRz1fJoVP4oWfpsknto5WW0ELydBOjd0hnHbmA5rJMANoKaNNvc69VW0ATxIGfpmuaHlJ7SL8AdlQI+wVozjFqOs322WUEXs1HZDMgxLYvaQKHM523kMoCQ7seiXuUlIoP67ZxK1OmzBscvTolc+6EAz7R4UwLIbJXMpGIoDZnpDISgbrFzWbJhbDaWZocSWylboM8omysYg19ACRlMr4Zq91WWQaypIgnEx6B6pFitrl2FUR5kaoA/0cSXm9z7JmN9t24RFEPS4Ut8C2SJS0BaR0DSt1fm0gYQZXVbZA5m2WbPo3RNgokojyJP0/5m3QJUnNQDFDgZ/nTkCcVfuxrJ5oOFkEz1HNZBzAAKQRwlCRQVjzxXyJvM7HvFXpiolbTAY1PLm9HCxN5jo9BWzAhgEHo5wRWoevXE48esqUSOb737ja47ExkcuhOYd/EeRLD+YJkY6UC0RwSTHjV7evc9PHo1IyyI5cFe28NgkwYwKlKCXXHnI7Fc8hQ8O/2C9Wh3HjSHVIwhNfOo5nWs2jDU16R9sqsYRs3K0/F+0skSCFNqjBwEFpbm1xwHO2u+8Mc/6U7n7pD558fqZ88b3X4o=
   app: rhantak-be4-final
   on:
     repo: rhantak/be4_final
