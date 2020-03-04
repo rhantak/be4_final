@@ -55,6 +55,18 @@ describe 'Events API' do
   end
 
   it "sends specific event medal data" do
-    get '/api/v1/events/'
+    get "/api/v1/events/#{@event_2.id}/medalists"
+
+    expect(response).to be_successful
+
+    data = JSON.parse(response.body)
+
+    expect(data["event"]).to eq("Special characters")
+
+    expect(data["medalists"].count).to eq(1)
+    expect(data["medalists"][0]["name"]).to eq(@olymp_4.name)
+    expect(data["medalists"][0]["team"]).to eq(@olymp_4.team)
+    expect(data["medalists"][0]["age"]).to eq(@olymp_4.age)
+    expect(data["medalists"][0]["medal"]).to eq("Gold")
   end
 end
