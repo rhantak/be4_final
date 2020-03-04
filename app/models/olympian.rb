@@ -15,4 +15,19 @@ class Olympian < ApplicationRecord
     maximum_age = Olympian.maximum(:age)
     Olympian.where(age: maximum_age)
   end
+
+  def self.average_weight
+    male_weight = Olympian.where(sex: "M").average(:weight).round(1).to_f
+    female_weight = Olympian.where(sex: "F").average(:weight).round(1).to_f
+
+    {
+      "unit": "kg",
+      "male_olympians": male_weight,
+      "female_olympians": female_weight,
+    }
+  end
+
+  def self.average_age
+    Olympian.average(:age).round(1).to_f
+  end
 end
