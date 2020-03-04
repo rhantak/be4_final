@@ -9,8 +9,8 @@ script:
 services: postgresql
 deploy:
   provider: heroku
-  app: rhantak-be4-final
-  on:
-    repo: rhantak/be4_final
   api_key:
     secure: fKll6LgnGLP0kJ3edkNhvnW1VWG31jjbfJrof82tvdEeERIb63JcNYqYhR4tpBdjMuXV9VJ/PLCTOc7xCy57WFfL0eXBhmCeBG0YscekEdnw67TyMqIakzMGdhA/bW+9UJZsUsBCzBbw3vw5LWkrBwQVlgvMy3goPVlS77Dg2qQ+UJuGEPozloBKjdFqCVHlCm2jB5kqZWDjQ1Z09hgm5Q9UyaTYF3jEhwSBfWDeGElYcLZOmg60cVDJ3DG8JRaeD/y4KHg0PlboyC7AxTdqj2ujP3qHE/N2HQoHhY5GEMrRXRT1md1VvbU2WCNAhDKTgcD1yKO9EbcYrAbVbM4dSpG39of9h/oIn8cetrwE0KHb0LC0T4j3q9idO5paOJPQcLp8W3EA3CCDOF6MyGQ94mzkLsZToxp/d6M3ggHZNOWm7IYkisDXXBqXgMqUe4PozVWK1f6fm5R+8IykPFpKdB33wHsL0GYeeoiDQOhf+2RI0jilILjqi4DoU+gMEkFqul7u7RuGOmEW8JuXgrJIlJnMpx9g+r2JJjFibhg6ED+HznzhhZsIZN5cVerqYwRUJeYHhBJFAcyjGnihgD2Jm1LJrItWs2j8xgpx80NZlNBXoEsOtyBxNt885Rmku1A1HMi0ueUO+KMFtjMDelWaSq55C3cf4cNVQBbnRoEBMrM=
+  app: rhantak-be4-final
+  on:
+      repo: rhantak/be4_final
