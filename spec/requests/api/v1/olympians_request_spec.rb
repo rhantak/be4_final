@@ -8,10 +8,15 @@ describe 'Olympians API' do
     @olymp_1 = Olympian.create(name: "Ryan H", sex: "M", age: 25, height: 175, weight: 100, team: "USA", sport_id: @typing.id)
     @olymp_2 = Olympian.create(name: "Bob G", sex: "M", age: 38, height: 185, weight: 90, team: "USA", sport_id: @running.id)
 
-    Event.create(games: "2016 Olympics", event: "100 word dash", medal: "Silver", olympian_id: @olymp_1.id, sport_id: @typing.id)
-    Event.create(games: "2016 Olympics", event: "Special characters", medal: "NA", olympian_id: @olymp_1.id, sport_id: @typing.id)
-    Event.create(games: "2016 Olympics", event: "Running fast", medal: "Silver", olympian_id: @olymp_2.id, sport_id: @running.id)
-    Event.create(games: "2016 Olympics", event: "Running medium", medal: "Gold", olympian_id: @olymp_2.id, sport_id: @running.id)
+    @event_1 = Event.create(games: "2016 Olympics", event: "100 word dash", sport_id: @typing.id)
+    @event_2 = Event.create(games: "2016 Olympics", event: "Special characters", sport_id: @typing.id)
+    @event_3 = Event.create(games: "2016 Olympics", event: "Running fast", sport_id: @running.id)
+    @event_4 = Event.create(games: "2016 Olympics", event: "Running medium", sport_id: @running.id)
+
+    OlympianEvent.create(olympian_id: @olymp_1.id, event_id: @event_1.id, medal: "Silver")
+    OlympianEvent.create(olympian_id: @olymp_1.id, event_id: @event_2.id, medal: "NA")
+    OlympianEvent.create(olympian_id: @olymp_2.id, event_id: @event_3.id, medal: "Silver")
+    OlympianEvent.create(olympian_id: @olymp_2.id, event_id: @event_4.id, medal: "Gold")
   end
 
   it 'sends a list of all olympians' do
