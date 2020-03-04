@@ -1,0 +1,8 @@
+language: ruby
+rvm:
+  - 2.4.1
+services:
+  postgresql
+deploy:
+  provider: heroku
+  app: rhantak-be4-final
