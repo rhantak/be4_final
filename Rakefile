@@ -29,7 +29,6 @@ namespace :import_data do
         games: row["Games"],
         event: row["Event"],
         sport_id: sport.id,
-        olympian_id: olympian.id
       )
     end
   end
