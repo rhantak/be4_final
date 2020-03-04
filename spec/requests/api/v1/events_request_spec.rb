@@ -11,16 +11,24 @@ describe 'Events API' do
     @olymp_4 = Olympian.create(name: "Carol G", sex: "F", age: 38, height: 160, weight: 75, team: "France", sport_id: @typing.id)
     @olymp_5 = Olympian.create(name: "Gary J", sex: "M", age: 45, height: 188, weight: 88, team: "Germany", sport_id: @running.id)
 
-    Event.create(games: "2016 Olympics", event: "100 word dash", medal: "Silver", olympian_id: @olymp_1.id, sport_id: @typing.id)
-    Event.create(games: "2016 Olympics", event: "Special characters", medal: "NA", olympian_id: @olymp_1.id, sport_id: @typing.id)
-    Event.create(games: "2016 Olympics", event: "Running fast", medal: "Silver", olympian_id: @olymp_2.id, sport_id: @running.id)
-    Event.create(games: "2016 Olympics", event: "Running medium", medal: "Gold", olympian_id: @olymp_2.id, sport_id: @running.id)
-    Event.create(games: "2016 Olympics", event: "Running medium", medal: "Bronze", olympian_id: @olymp_3.id, sport_id: @running.id)
-    Event.create(games: "2016 Olympics", event: "Running long distance", medal: "Gold", olympian_id: @olymp_3.id, sport_id: @running.id)
-    Event.create(games: "2016 Olympics", event: "Special characters", medal: "Gold", olympian_id: @olymp_4.id, sport_id: @typing.id)
-    Event.create(games: "2016 Olympics", event: "ASCII characters", medal: "Silver", olympian_id: @olymp_4.id, sport_id: @typing.id)
-    Event.create(games: "2016 Olympics", event: "Running long distance", medal: "NA", olympian_id: @olymp_5.id, sport_id: @running.id)
-    Event.create(games: "2016 Olympics", event: "Running in slo mo", medal: "Gold", olympian_id: @olymp_5.id, sport_id: @running.id)
+    @event_1 = Event.create(games: "2016 Olympics", event: "100 word dash", sport_id: @typing.id)
+    @event_2 = Event.create(games: "2016 Olympics", event: "Special characters", sport_id: @typing.id)
+    @event_3 = Event.create(games: "2016 Olympics", event: "Running fast", sport_id: @running.id)
+    @event_4 = Event.create(games: "2016 Olympics", event: "Running medium", sport_id: @running.id)
+    @event_5 = Event.create(games: "2016 Olympics", event: "Running long distance", sport_id: @running.id)
+    @event_6 = Event.create(games: "2016 Olympics", event: "ASCII characters", sport_id: @typing.id)
+    @event_7 = Event.create(games: "2016 Olympics", event: "Running in slo mo", sport_id: @running.id)
+
+    OlympianEvent.create(olympian_id: @olymp_1.id, event_id: @event_1.id, medal: "Silver")
+    OlympianEvent.create(olympian_id: @olymp_1.id, event_id: @event_2.id, medal: "NA")
+    OlympianEvent.create(olympian_id: @olymp_2.id, event_id: @event_3.id, medal: "Silver")
+    OlympianEvent.create(olympian_id: @olymp_2.id, event_id: @event_4.id, medal: "Gold")
+    OlympianEvent.create(olympian_id: @olymp_3.id, event_id: @event_4.id, medal: "Bronze")
+    OlympianEvent.create(olympian_id: @olymp_3.id, event_id: @event_5.id, medal: "Gold")
+    OlympianEvent.create(olympian_id: @olymp_4.id, event_id: @event_2.id, medal: "Gold")
+    OlympianEvent.create(olympian_id: @olymp_4.id, event_id: @event_6.id, medal: "Silver")
+    OlympianEvent.create(olympian_id: @olymp_5.id, event_id: @event_5.id, medal: "NA")
+    OlympianEvent.create(olympian_id: @olymp_5.id, event_id: @event_7.id, medal: "Gold")
   end
 
   it "sends a list of events by sport" do
@@ -44,5 +52,21 @@ describe 'Events API' do
     expect(data["events"][1]["events"][1]).to eq("Running medium")
     expect(data["events"][1]["events"][2]).to eq("Running long distance")
     expect(data["events"][1]["events"][3]).to eq("Running in slo mo")
+  end
+
+  it "sends specific event medal data" do
+    get "/api/v1/events/#{@event_2.id}/medalists"
+
+    expect(response).to be_successful
+
+    data = JSON.parse(response.body)
+
+    expect(data["event"]).to eq("Special characters")
+
+    expect(data["medalists"].count).to eq(1)
+    expect(data["medalists"][0]["name"]).to eq(@olymp_4.name)
+    expect(data["medalists"][0]["team"]).to eq(@olymp_4.team)
+    expect(data["medalists"][0]["age"]).to eq(@olymp_4.age)
+    expect(data["medalists"][0]["medal"]).to eq("Gold")
   end
 end
