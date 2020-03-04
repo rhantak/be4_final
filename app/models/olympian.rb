@@ -1,10 +1,11 @@
 class Olympian < ApplicationRecord
-  validates_presence_of :name, :sex, :age, :height, :weight, :team, :sport
-  has_many :events
+  validates_presence_of :name, :sex, :age, :height, :weight, :team
+  has_many :olympian_events
+  has_many :events, through: :olympian_events
   belongs_to :sport
 
   def total_medals_won
-    events.where.not(medal: "NA").count
+    olympian_events.where.not(medal: "NA").count
   end
 
   def self.youngest

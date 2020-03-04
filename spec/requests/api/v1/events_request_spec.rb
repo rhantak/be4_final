@@ -45,4 +45,8 @@ describe 'Events API' do
     expect(data["events"][1]["events"][2]).to eq("Running long distance")
     expect(data["events"][1]["events"][3]).to eq("Running in slo mo")
   end
+
+  it "sends specific event medal data" do
+    get '/api/v1/events/'
+  end
 end
