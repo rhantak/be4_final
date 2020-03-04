@@ -2,5 +2,31 @@
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
 require_relative 'config/application'
+require 'csv'
 
 Rails.application.load_tasks
+
+namespace :import_data do
+  task import_olympians: :environment do
+    CSV.foreach("olympic_data_2016.csv", headers: true) do |row|
+      row = row.to_hash
+
+      olympian = Olympian.find_or_create_by(
+        name: row["Name"],
+        sex: row["Sex"],
+        age: row["Age"],
+        height: row["Height"],
+        weight: row["Weight"],
+        team: row["Team"]
+      )
+
+      event = Event.find_or_create_by(
+        games: row["Games"],
+        sport: row["Sport"],
+        event: row["Event"],
+        medal: row["Medal"],
+        olympian_id: olympian.id
+      )
+    end
+  end
+end
