@@ -17,8 +17,8 @@ class Olympian < ApplicationRecord
   end
 
   def self.average_weight
-    male_weight = Olympian.where(sex: "M").average(:weight).round(1)
-    female_weight = Olympian.where(sex: "F").average(:weight).round(1)
+    male_weight = Olympian.where(sex: "M").average(:weight).round(1).to_f
+    female_weight = Olympian.where(sex: "F").average(:weight).round(1).to_f
 
     {
       "unit": "kg",
@@ -28,6 +28,6 @@ class Olympian < ApplicationRecord
   end
 
   def self.average_age
-    Olympian.average(:age).round(1)
+    Olympian.average(:age).round(1).to_f
   end
 end
