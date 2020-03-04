@@ -10,7 +10,7 @@ class OlympianSerializer
       olympians.push({
         "name": olympian.name,
         "team": olympian.team,
-        "sport": olympian.sport,
+        "sport": olympian.sport.name,
         "total_medals_won": olympian.total_medals_won
         })
     end
