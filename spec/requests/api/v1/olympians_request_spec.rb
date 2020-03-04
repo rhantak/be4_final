@@ -68,4 +68,17 @@ describe 'Olympians API' do
     expect(data["olympians"][0]["sport"]).to eq(@olymp_2.sport.name)
     expect(data["olympians"][0]["total_medals_won"]).to eq(2)
   end
+
+  it 'sends an error message for poorly formatted queries' do
+    get '/api/v1/olympians?age=yungest'
+
+    expect(response).to_not be_successful
+
+    expect(response.status).to eq(400)
+
+    data = JSON.parse(response.body)
+
+    expect(data["error"]).to eq("Poorly formatted request")
+    expect(data["detail"]).to eq("\"yungest\" is not a valid value for the age parameter.")
+  end
 end
