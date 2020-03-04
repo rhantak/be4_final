@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       get '/olympians', to: 'olympians#index'
 
       get '/olympian_stats', to: 'olympian_stats#index'
+
+      get '/events', to: 'events#index'
     end
   end
 end
