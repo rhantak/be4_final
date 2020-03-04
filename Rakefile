@@ -30,6 +30,12 @@ namespace :import_data do
         event: row["Event"],
         sport_id: sport.id,
       )
+
+      OlympianEvent.find_or_create_by(
+        medal: row["Medal"],
+        olympian_id: olympian.id,
+        event_id: event.id
+      )
     end
   end
 end
