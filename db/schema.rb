@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 2020_03_04_020742) do
 
   create_table "events", force: :cascade do |t|
     t.string "games"
-    t.string "sport"
     t.string "event"
     t.string "medal"
     t.bigint "olympian_id"
@@ -31,6 +30,7 @@ ActiveRecord::Schema.define(version: 2020_03_04_020742) do
     t.integer "height"
     t.integer "weight"
     t.string "team"
+    t.string "sport"
   end
 
   add_foreign_key "events", "olympians"

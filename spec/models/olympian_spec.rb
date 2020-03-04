@@ -8,6 +8,7 @@ RSpec.describe Olympian, type: :model do
     it { should validate_presence_of :height}
     it { should validate_presence_of :weight}
     it { should validate_presence_of :team}
+    it { should validate_presence_of :sport }
   end
 
   describe 'relationships' do
