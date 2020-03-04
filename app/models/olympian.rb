@@ -26,4 +26,8 @@ class Olympian < ApplicationRecord
       "female_olympians": female_weight,
     }
   end
+
+  def self.average_age
+    Olympian.average(:age).round(1)
+  end
 end
