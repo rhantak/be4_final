@@ -7,6 +7,7 @@ class CreateOlympian < ActiveRecord::Migration[5.2]
       t.integer :height
       t.integer :weight
       t.string :team
+      t.string :sport
     end
   end
 end
