@@ -22,14 +22,14 @@ namespace :import_data do
         height: row["Height"],
         weight: row["Weight"],
         team: row["Team"],
-        sport: sport.id
+        sport_id: sport.id
       )
 
       event = Event.find_or_create_by(
         games: row["Games"],
         event: row["Event"],
         medal: row["Medal"],
-        sport: sport.id,
+        sport_id: sport.id,
         olympian_id: olympian.id
       )
     end

@@ -9,5 +9,6 @@ RSpec.describe Event, type: :model do
 
   describe 'relationships' do
     it { should belong_to :olympian }
+    it { should belong_to :sport }
   end
 end

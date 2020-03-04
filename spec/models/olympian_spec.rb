@@ -12,7 +12,8 @@ RSpec.describe Olympian, type: :model do
   end
 
   describe 'relationships' do
-    it { should have_many :events}
+    it { should have_many :events }
+    it { should belong_to :sport }
   end
 
   describe 'instance methods' do
