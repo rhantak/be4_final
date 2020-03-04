@@ -11,6 +11,10 @@ namespace :import_data do
     CSV.foreach("olympic_data_2016.csv", headers: true) do |row|
       row = row.to_hash
 
+      sport = Sport.find_or_create_by(
+        name: row["Sport"]
+      )
+
       olympian = Olympian.find_or_create_by(
         name: row["Name"],
         sex: row["Sex"],
@@ -18,13 +22,14 @@ namespace :import_data do
         height: row["Height"],
         weight: row["Weight"],
         team: row["Team"],
-        sport: row["Sport"]
+        sport_id: sport.id
       )
 
       event = Event.find_or_create_by(
         games: row["Games"],
         event: row["Event"],
         medal: row["Medal"],
+        sport_id: sport.id,
         olympian_id: olympian.id
       )
     end
