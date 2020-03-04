@@ -9,6 +9,7 @@ script:
 services: postgresql
 deploy:
   provider: heroku
+  app: rhantak-be4-final
   on:
     repo: rhantak/be4_final
   api_key:
