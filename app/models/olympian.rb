@@ -10,4 +10,9 @@ class Olympian < ApplicationRecord
     minimum_age = Olympian.minimum(:age)
     Olympian.where(age: minimum_age)
   end
+
+  def self.oldest
+    maximum_age = Olympian.maximum(:age)
+    Olympian.where(age: maximum_age)
+  end
 end

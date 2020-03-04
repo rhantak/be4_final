@@ -38,5 +38,13 @@ RSpec.describe Olympian, type: :model do
 
       expect(Olympian.youngest[0]).to eq(@olymp_3)
     end
+
+    it "can find the oldest olympian" do
+      @olymp_1 = Olympian.create(name: "Ryan H", sex: "M", age: 25, height: 175, weight: 100, team: "USA", sport: "Typing")
+      @olymp_2 = Olympian.create(name: "Bob G", sex: "M", age: 38, height: 185, weight: 90, team: "USA", sport: "Running")
+      @olymp_3 = Olympian.create(name: "Jack Smith", sex: "M", age: 17, height: 165, weight: 95, team: "Zimbabwe", sport: "Running")
+
+      expect(Olympian.oldest[0]).to eq(@olymp_2)
+    end
   end
 end
